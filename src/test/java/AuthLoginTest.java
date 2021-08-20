@@ -1,14 +1,10 @@
-
-
 import com.tercom.ltdo.AuthLogin;
 import com.tercom.ltdo.HomePage;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import java.util.concurrent.TimeUnit;
-import static org.junit.jupiter.api.Assertions.assertAll;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AuthLoginTest extends BaseTest {
@@ -43,13 +39,13 @@ public class AuthLoginTest extends BaseTest {
     }
 
 
-    @Feature("ID (ID A4,A8) Russian language in Login/Password fields")
+    @Feature("(ID A4,A8) Russian language in Login/Password fields")
     @Test
     void russianLangInLoginPasswordTest() {
 
         new AuthLogin(driver)
                 .inputLogin(RUSSIAN_LANG)
-                .inputPasssword(RUSSIAN_LANG)
+                .inputPassword(RUSSIAN_LANG)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -61,7 +57,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(RANDOM_NUMBERS)
-                .inputPasssword(RANDOM_NUMBERS)
+                .inputPassword(RANDOM_NUMBERS)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -74,7 +70,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(SYMBOLS)
-                .inputPasssword(SYMBOLS)
+                .inputPassword(SYMBOLS)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -87,7 +83,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -99,7 +95,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_MAIL)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -111,7 +107,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN.toUpperCase())
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -123,7 +119,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_MAIL.toUpperCase())
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -134,7 +130,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_MAIL+SPACES)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -145,7 +141,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN+SPACES)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         employeeImageAssert();
@@ -174,7 +170,7 @@ public class AuthLoginTest extends BaseTest {
     void loginByWrongLoginValidPasswordTest() {
 
         new AuthLogin(driver)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         setSingInButtonNotActive();
@@ -185,7 +181,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(RANDOM_USER_EMAIL)
-                .inputPasssword(USER_PASSWORD)
+                .inputPassword(USER_PASSWORD)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -196,7 +192,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN)
-                .inputPasssword(RANDOM_ARTIST_NAME)
+                .inputPassword(RANDOM_ARTIST_NAME)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -207,7 +203,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN)
-                .inputPasssword(USER_PASSWORD+SPACES)
+                .inputPassword(USER_PASSWORD+SPACES)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
@@ -218,7 +214,7 @@ public class AuthLoginTest extends BaseTest {
 
         new AuthLogin(driver)
                 .inputLogin(USER_LOGIN)
-                .inputPasssword(USER_PASSWORD.toUpperCase())
+                .inputPassword(USER_PASSWORD.toUpperCase())
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
