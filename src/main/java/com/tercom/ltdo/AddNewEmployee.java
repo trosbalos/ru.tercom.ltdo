@@ -1,6 +1,7 @@
 package com.tercom.ltdo;
 
 import io.qameta.allure.Step;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,10 +10,11 @@ import org.openqa.selenium.support.FindBy;
 public class AddNewEmployee extends BasePage{
     public AddNewEmployee(WebDriver driver) { super(driver);}
 
+
+
+
     @FindBy(xpath = "//*[text()=\"Добавить сотрудника\"]")
     private WebElement dashboardCreateNewEmployeeButton;
-    @FindBy(tagName = "html")
-    private WebElement html;
     @FindBy(xpath = "//*[@id=\"firstName\"]")
     private WebElement firstNameField;
     @FindBy(xpath = "//*[@id=\"lastName\"]")
@@ -35,7 +37,7 @@ public class AddNewEmployee extends BasePage{
     private WebElement roleSelect;
     @FindBy(xpath = "//*[@class=\"mat-checkbox-inner-container\"]")
     private WebElement rootCheckBox;
-    @FindBy(xpath = "//*[id=\"email\"]")
+    @FindBy(xpath = "//*[@id=\"email\"]")
     private WebElement emailField;
     @FindBy(xpath = "//*[text()=\" Отмена \"]")
     private WebElement cancelButton;
@@ -48,11 +50,7 @@ public class AddNewEmployee extends BasePage{
         dashboardCreateNewEmployeeButton.click();
         return this;
     }
-    @Step(value = "tab")
-        public AddNewEmployee tab() {
-        html.sendKeys(Keys.TAB);
-        return this;
-    }
+
         @Step(value = "Add new employee first name")
         public AddNewEmployee firstName(String name) {
         firstNameField.sendKeys(name);
@@ -120,7 +118,32 @@ public class AddNewEmployee extends BasePage{
          @Step(value = "Add new employee save button click")
         public AddNewEmployee saveButton() {
              saveButton.click();
-        return this;
-    }
+        return this; }
+
+        @Step
+        public  void copyFirstNameFromField() {
+            AddNewEmployee addNewEmployee = new AddNewEmployee(driver);
+            addNewEmployee.firstNameField.sendKeys(Keys.CONTROL, "a");
+            addNewEmployee.firstNameField.sendKeys(Keys.CONTROL, "c");
+        }
+        @Step
+        public void copyLastNameFromField() {
+            AddNewEmployee addNewEmployee = new AddNewEmployee(driver);
+            addNewEmployee.lastNameField.sendKeys(Keys.CONTROL, "a");
+            addNewEmployee.lastNameField.sendKeys(Keys.CONTROL, "c");
+        }
+        @Step
+        public void copyMiddleNameFromField() {
+            AddNewEmployee addNewEmployee = new AddNewEmployee(driver);
+            addNewEmployee.middleNameField.sendKeys(Keys.CONTROL, "a");
+            addNewEmployee.middleNameField.sendKeys(Keys.CONTROL, "c");
+        }
+        @Step
+        public void copyEmailAddressFromField() {
+            AddNewEmployee addNewEmployee = new AddNewEmployee(driver);
+            addNewEmployee.emailField.sendKeys(Keys.CONTROL, "a");
+            addNewEmployee.emailField.sendKeys(Keys.CONTROL, "c");
+        }
+
 
 }

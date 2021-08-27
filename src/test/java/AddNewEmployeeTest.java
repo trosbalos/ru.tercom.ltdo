@@ -1,10 +1,12 @@
 import com.tercom.ltdo.AddNewEmployee;
 import io.qameta.allure.Feature;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Dimension;
 
-public class AddNewEmployeeTest extends BaseTest{
-    void openCreateNewEmployeeWindow(){
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class AddNewEmployeeTest extends BaseTest {
+    void openNewEmployeeWindow() {
         super.loginDO();
 
         new AddNewEmployee(driver)
@@ -12,29 +14,19 @@ public class AddNewEmployeeTest extends BaseTest{
 
     }
 
-    @Feature("Create new employee")
+    @Feature("firstNameFieldStringValidate")
     @Test
-    void openCreateNewEmployeeWindowTest() {
+    void firstNameFieldStringValidate() {
 
-        openCreateNewEmployeeWindow();
+        openNewEmployeeWindow();
 
         new AddNewEmployee(driver)
                 .firstName(RANDOM_ARTIST_NAME)
-                .lastName(RANDOM_ARTIST_NAME)
-                .middleName(RANDOM_ARTIST_NAME)
-                .positionDropDownClick()
-                .positionClick()
-                .rootCheckBoxClick()
-                .officeDropDownClick()
-                .officeSelectClick()
-                .roleDropDownClick()
-                .roleDropDownPanelClick()
+                .copyFirstNameFromField();
 
-                .emailField(RANDOM_USER_EMAIL)
-                .cancelButton() ;
-
-
-
+        Assertions.assertAll(
+                () -> assertTrue(RANDOM_ARTIST_NAME.equals(getBufferedString()))
+        );
 
     }
 }

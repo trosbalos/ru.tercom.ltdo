@@ -15,6 +15,9 @@ public class HomePage extends BasePage {
     }
 
     @FindBy(xpath = "//*[@alt=\"Employee image\"]")
+    // а вот как он ее находит
+    // эта штука локатор
+
     private WebElement employeeImage;
     @Step(value = "Employee image Displayed")
     public WebElement employeeImageDisplayed() {

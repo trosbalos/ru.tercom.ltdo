@@ -1,6 +1,7 @@
 package com.tercom.ltdo;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,9 +28,9 @@ public class AuthLogin extends BasePage {
     private WebElement singInButton;
     @FindBy(css = ".form__error > small")
     private WebElement wrongLoginOrPassword;
-    public WebElement wrongLoginOrPasswordDisplayed() {
-        return wrongLoginOrPassword;
-    }
+
+
+
     @FindBy(xpath = "//*[@disabled=\"\"]")
     private WebElement singInButtonNotActive;
     public WebElement singInButtonNotActive() {
@@ -49,6 +50,22 @@ public class AuthLogin extends BasePage {
     public AuthLogin clickSingInButton() {
             singInButton.click();
         return this;
+    }
+    @Step(value = "Copy from LoginOrEmail field")
+    public void copyLoginOrEmailField() {
+        AuthLogin authLogin = new AuthLogin(driver);
+        authLogin.inputEmailLogin.sendKeys(Keys.CONTROL, "a");
+        authLogin.inputEmailLogin.sendKeys(Keys.CONTROL, "c");
+    }
+    @Step(value = "Copy from inputPassword field")
+    public void copyPasswordField() {
+        AuthLogin authLogin = new AuthLogin(driver);
+        authLogin.inputPassword.sendKeys(Keys.CONTROL, "a");
+        authLogin.inputPassword.sendKeys(Keys.CONTROL, "c");
+    }
+
+    public WebElement wrongLoginOrPasswordDisplayed() {
+        return wrongLoginOrPassword;
     }
 
 }

@@ -1,6 +1,9 @@
 import com.tercom.ltdo.AddNewDepartment;
 import io.qameta.allure.Feature;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddNewDepartmentTest extends BaseTest {
 
@@ -11,17 +14,29 @@ public class AddNewDepartmentTest extends BaseTest {
                 .dashboardCreateNewDepartmentButton();
     }
 
-    @Feature("Create new department")
+    @Feature("Department NameField String Validate")
     @Test
-    void openCreateNewDepartmentTest() {
+    void departmentNameFieldStringValidate() {
         openCreateNewDepartmentWindow();
         new AddNewDepartment(driver)
-                .newDepartmentNameField(RANDOM_DEPARTMENT)
-                .newDepartmentDescriptionField(RANDOM_DEPARTMENT)
-                .newDepartmentDirectorDropDown()
-                .newDepartmentDropDownDirectorSelect()
-                .newDepartmentCreateButtonClick();
+                .departmentFieldNameField(RANDOM_DEPARTMENT)
+                .copyDepartmentNameFromField();
+        Assertions.assertAll(
+                () -> assertTrue(RANDOM_DEPARTMENT.equals(getBufferedString())));
+    }
 
+    @Feature("New departent create")
+    @Test
+    void newDepartmentCreate() {
+        openCreateNewDepartmentWindow();
+        new AddNewDepartment(driver)
+                .departmentFieldNameField(RANDOM_DEPARTMENT)
+                .descriptionField(RANDOM_DEPARTMENT_DESCRIPTION)
+                .createButtonClick()
+                .createButtonClick();
 
+//        Assertions.assertAll(
+//                () -> assertTrue(RANDOM_DEPARTMENT.equals(getBufferedString())));
+//    }
     }
 }
