@@ -1,5 +1,5 @@
-import com.tercom.ltdo.AuthLogin;
-import com.tercom.ltdo.HomePage;
+package WebUI;
+
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ public class AuthLoginTest extends BaseTest {
 
         implicitlyWait(10);
         HomePage homePage = new HomePage(driver);
-        WebElement employeeImage = homePage.employeeImageDisplayed();
+        WebElement employeeImage = homePage.employeeImage();
         Assertions.assertAll(
                 () -> assertTrue(employeeImage.isDisplayed())
         );
@@ -62,15 +62,15 @@ public class AuthLoginTest extends BaseTest {
     void numbersInLoginPasswordFieldsTest() {
 
         new AuthLogin(driver)
-                .inputLogin(RANDOM_NUMBERS)
-                .inputPassword(RANDOM_NUMBERS)
+                .inputLogin(RANDOM_DIGITS)
+                .inputPassword(RANDOM_DIGITS)
                 .clickSingInButton();
 
         wrongLoginPasswordMessage();
 
     }
 
-    @Feature("(ID A2,A6) Symbols in Login/Password fields")
+    @Feature("(ID A2,A6,A24) Symbols in Login/Password fields")
     @Test
     void symbolsInLoginPasswordFieldsTest() {
 
@@ -241,7 +241,7 @@ public class AuthLoginTest extends BaseTest {
                 .copyPasswordField();
         System.out.println(RANDOM_ARTIST_NAME);
         Assertions.assertAll(
-                () -> assertNotEquals(RANDOM_ARTIST_NAME, (getBufferedString()))
+                () -> Assertions.assertNotEquals(RANDOM_ARTIST_NAME, (getBufferedString()))
         );
 
     }
@@ -250,10 +250,32 @@ public class AuthLoginTest extends BaseTest {
     @Test
     void loginFieldAcceptNumbersInput() {
         new AuthLogin(driver)
-                .inputLogin(RANDOM_NUMBERS)
+                .inputLogin(RANDOM_DIGITS)
                 .copyLoginOrEmailField();
         Assertions.assertAll(
-                () -> assertTrue(RANDOM_NUMBERS.equals(getBufferedString()))
+                () -> Assertions.assertTrue(RANDOM_DIGITS.equals(getBufferedString()))
+        );
+
+    }
+    @Feature("(ID A28) Login field accepts symbols")
+    @Test
+    void loginFieldAcceptSymbolsInput() {
+        new AuthLogin(driver)
+                .inputLogin(SYMBOLS)
+                .copyLoginOrEmailField();
+        Assertions.assertAll(
+                () -> Assertions.assertTrue(SYMBOLS.equals(getBufferedString()))
+        );
+
+    }
+    @Feature("(ID A29) Login field accepts spaces")
+    @Test
+    void loginFieldAcceptSpacesInput() {
+        new AuthLogin(driver)
+                .inputLogin(SPACES)
+                .copyLoginOrEmailField();
+        Assertions.assertAll(
+                () -> Assertions.assertTrue(SPACES.equals(getBufferedString()))
         );
 
     }

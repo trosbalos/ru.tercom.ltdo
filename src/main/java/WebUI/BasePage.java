@@ -1,4 +1,4 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

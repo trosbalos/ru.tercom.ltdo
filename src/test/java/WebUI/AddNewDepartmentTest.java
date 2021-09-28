@@ -1,9 +1,10 @@
-import com.tercom.ltdo.AddNewDepartment;
+package WebUI;
+
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class AddNewDepartmentTest extends BaseTest {
 
@@ -22,7 +23,7 @@ public class AddNewDepartmentTest extends BaseTest {
                 .departmentFieldNameField(RANDOM_DEPARTMENT)
                 .copyDepartmentNameFromField();
         Assertions.assertAll(
-                () -> assertTrue(RANDOM_DEPARTMENT.equals(getBufferedString())));
+                () -> Assertions.assertTrue(RANDOM_DEPARTMENT.equals(getBufferedString())));
     }
 
     @Feature("New departent create")

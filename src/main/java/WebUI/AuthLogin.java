@@ -1,4 +1,4 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
@@ -20,18 +20,18 @@ public class AuthLogin extends BasePage {
     }
 
 
-    @FindBy(xpath = "//*[@name=\"email\"]")
+    @FindBy(xpath = "//*[@type=\"email\"]")
     private WebElement inputEmailLogin;
-    @FindBy(xpath = "//*[@name=\"password\"]")
+    @FindBy(xpath = "//*[@type=\"password\"]")
     private WebElement inputPassword;
-    @FindBy(xpath = "//*[@id=\"btn-enter\"]")
+    @FindBy(xpath = "//*[@class=\"form__submit\"]")
     private WebElement singInButton;
-    @FindBy(css = ".form__error > small")
+    @FindBy(xpath = "//*[text()=\" Неверный логин или пароль :( \"]")
     private WebElement wrongLoginOrPassword;
 
 
 
-    @FindBy(xpath = "//*[@disabled=\"\"]")
+    @FindBy(xpath = "//*[@disabled=\"true\"]")
     private WebElement singInButtonNotActive;
     public WebElement singInButtonNotActive() {
         return singInButtonNotActive;

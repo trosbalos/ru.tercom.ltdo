@@ -1,7 +1,8 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import io.qameta.allure.Step;
 
+import lombok.Getter;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,12 @@ public class AddNewEmployee extends BasePage{
     private WebElement dashboardCreateNewEmployeeButton;
     @FindBy(xpath = "//*[@id=\"firstName\"]")
     private WebElement firstNameField;
+    @Getter
+    @FindBy(xpath = "//*[text()=\"Имя обязательно!\"]")
+    private WebElement firstNameFieldWarning;
+    @Getter
+    @FindBy(xpath = "//*[@for=\"firstName\"]/span[text()=\" *\"]")
+    private WebElement firstNameFieldStar;
     @FindBy(xpath = "//*[@id=\"lastName\"]")
     private WebElement lastNameField;
     @FindBy(xpath = "//*[@id=\"middleName\"]")

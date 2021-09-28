@@ -1,4 +1,5 @@
-import com.tercom.ltdo.AuthLogin;
+package WebUI;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest extends Configuration {
     public WebDriver driver;
-
+//Неявное ожидание
     void implicitlyWait(long seconds) {
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
@@ -27,7 +28,7 @@ public abstract class BaseTest extends Configuration {
         AuthLogin authLogin = new AuthLogin(driver);
         authLogin.loginDO();
     }
-
+// Забираем стринугу из буфера, выводим ее и ее длину в консоль
     String getBufferedString() {
         String result = "";
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -41,7 +42,8 @@ public abstract class BaseTest extends Configuration {
                 ex.printStackTrace();
             }
         }
-        System.out.println(result);
+        System.out.println("Length is : "+result.length());
+        System.out.println("Result is : "+result);
         return result;
     }
 

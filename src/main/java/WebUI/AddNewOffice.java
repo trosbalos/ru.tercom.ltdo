@@ -1,4 +1,4 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -17,13 +17,19 @@ public class AddNewOffice extends BasePage{
     @FindBy(xpath = "//*[@id=\"city\"]")
     private WebElement inputCityField;
     @Getter
-    @FindBy(xpath = "//label[@for=\"city\"]/mat-label")
+    @FindBy(xpath = "//label[@for=\"city\"]/mat-label[text()=\"Город\"]")
     private WebElement cityLabel;
+    @Getter
+    @FindBy(xpath = "//label[@for=\"address\"]/mat-label[text()=\"Адрес\"]")
+    private WebElement addressLabel;
     @Getter
     @FindBy(xpath = "//*[@for=\"city\"]/span[text()=\" *\"]")
     private WebElement inputCityStar;
     @FindBy(xpath = "//*[@id=\"address\"]")
     private WebElement inputAddressField;
+    @Getter
+    @FindBy(xpath = "//*[@for=\"address\"]/span[text()=\" *\"]")
+    private WebElement inputAddressFieldStar;
     @FindBy(xpath = "//*[@id=\"name\"]")
     private WebElement inputOfficeNameField;
     @FindBy(xpath = "//*[@class=\"mat-button-wrapper\" and text()=\"Добавить офис\"]")
@@ -46,6 +52,9 @@ public class AddNewOffice extends BasePage{
     @FindBy(xpath = "//*[@role=\"alert\"]/simple-snack-bar/span[text()=\"''City' must not be empty.\n" +
             "'Address' must not be empty.\"]")
     private WebElement cityAndAddressMustNotBeEmptyAlert;
+    @Getter
+    @FindBy(xpath = "//*/span[text()=\"New office added successfully\"]")
+    private WebElement newOfficeAddedSuccessAlert;
 
     @Step(value = "Input City")
     public AddNewOffice inputCity(String city) {
@@ -101,6 +110,11 @@ public class AddNewOffice extends BasePage{
     public void copyInputOfficeNameField() {       AddNewOffice addNewOffice = new AddNewOffice(driver);
         addNewOffice.inputOfficeNameField.sendKeys(Keys.CONTROL, "a");
         addNewOffice.inputOfficeNameField.sendKeys(Keys.CONTROL, "c");
+    }
+    @Step (value = "press ESC button")
+    public void escButtonPress(){       AddNewOffice addNewOffice = new AddNewOffice(driver);
+        addNewOffice.inputOfficeNameField.sendKeys(Keys.ESCAPE);
+
     }
 
 

@@ -1,12 +1,9 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class HomePage extends BasePage {
@@ -20,7 +17,7 @@ public class HomePage extends BasePage {
 
     private WebElement employeeImage;
     @Step(value = "Employee image Displayed")
-    public WebElement employeeImageDisplayed() {
+    public WebElement employeeImage() {
         return employeeImage;
     }
 

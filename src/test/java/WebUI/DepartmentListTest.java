@@ -1,5 +1,5 @@
-import com.tercom.ltdo.AddNewDepartment;
-import com.tercom.ltdo.DepartmentList;
+package WebUI;
+
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

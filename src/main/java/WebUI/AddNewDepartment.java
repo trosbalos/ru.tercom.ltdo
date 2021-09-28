@@ -1,4 +1,4 @@
-package com.tercom.ltdo;
+package WebUI;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
