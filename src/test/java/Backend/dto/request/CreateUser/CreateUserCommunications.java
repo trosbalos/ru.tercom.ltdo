@@ -1,26 +1,24 @@
-package Backend.dto.response;
+package Backend.dto.request.CreateUser;
 
-import javax.annotation.Generated;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
+import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "id",
-        "type",
-        "value"
+        "Type",
+        "Value"
 })
-@Generated("jsonschema2pojo")
 @Getter
-public class GetUserResponseCommunication {
+@Setter
+public class CreateUserCommunications {
 
-    @JsonProperty("id")
-    public String id;
-    @JsonProperty("type")
+    @JsonProperty("Type")
     public String type;
-    @JsonProperty("value")
+    @JsonProperty("Value")
     public String value;
 
 }

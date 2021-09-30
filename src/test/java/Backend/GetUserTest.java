@@ -1,28 +1,25 @@
 package Backend;
-
-import Backend.dto.response.GetUserResponse;
-import Backend.dto.response.GetUserResponseUser;
+import Backend.dto.response.GetUser.GetUserResponse;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import org.junit.jupiter.api.Test;
-
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 
 public class GetUserTest extends BaseTest {
     @Test
     void firstTest() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);
-        GetUserResponseUser response = given()
+        GetUserResponse response = given()
                 .when()
-                .header("token", token)
-                .get("https://user.ltdo.xyz/users/get/?userId=e8cbe0a2-b0fa-4e1b-b349-f0ef66cf26e1")
+                .header(getToken(), token)
+                .get(getUserGet() + getUID())
                 .then()
                 .extract()
-                .as(GetUserResponseUser.class);
+                .as(GetUserResponse.class);
 
         System.out.println(response.getStatus().toString());
-        System.out.println(response.getFirstName().toString());
-        System.out.println(response.getLastName().toString());
+        System.out.println(response.getBody().getUser().getLastName().toString());
+
     }
 }

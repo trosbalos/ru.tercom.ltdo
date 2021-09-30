@@ -1,6 +1,6 @@
 package Backend;
 
-import Backend.dto.request.PostAuth;
+import Backend.dto.request.PostAuth.PostAuth;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import org.junit.jupiter.api.Test;
@@ -24,27 +24,7 @@ public class AuthTest extends BaseTest {
                 .jsonPath()
          ;
     }
-    @Test
-    void secondTest() {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);
-        given()
-                 .log()
-                 .all()
-                 .header("Content-Type","application/json")
-                 .body("{\n" +
-                         "    \"LoginData\": \"admin\",\n" +
-                         "    \"Password\": \"ltstudents\"\n" +
-                         "}")
 
-                .when()
-                .post("https://auth.ltdo.xyz/auth/login")
-                .then()
-                .statusCode(200)
-                .extract()
-                .response()
-                .prettyPeek()
-                .jsonPath() ;
-    }
     @Test
     void thirdTest() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);
@@ -57,7 +37,7 @@ public class AuthTest extends BaseTest {
                  .when()
                  .header("Content-Type","application/json")
                  .body(request)
-                 .post("https://auth.ltdo.xyz/auth/login")
+                 .post(getAuthLogin())
                   .then().statusCode(200)
                  .extract()
                  .response()

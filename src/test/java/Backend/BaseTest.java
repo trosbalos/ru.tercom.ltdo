@@ -1,15 +1,19 @@
 package Backend;
 
+import Backend.dto.request.PostAuth.PostAuth;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
-import jdk.nashorn.internal.objects.annotations.Getter;
+import io.restassured.filter.log.LogDetail;
 import org.junit.jupiter.api.BeforeAll;
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.is;
 
-public class BaseTest {
+public class BaseTest extends Configuration{
    static String token;
+   static String auth ="https://auth.ltdo.xyz/auth/login";
+
+
 //    ValidatableResponse uploadedImageDeleteHashCode;
 //    static ResponseSpecification responseSpecification = null;
 //    static ResponseSpecification badRequestSpec = null;
@@ -20,26 +24,25 @@ public class BaseTest {
 //    protected static Map<String, String> headers = new HashMap<>();
 
     @BeforeAll
-
-    static void getToken(){
+   static void savedToken(){
         //Логирование
-        //RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(new AllureRestAssured());
         //Получаем токен
-        token = given()
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);
+        PostAuth request = new PostAuth();
+        request.setLoginData("admin");
+        request.setPassword("ltstudents");
+       token =  given()
                 .log()
                 .all()
-                .header("Content-Type", "application/json")
-                .body("{\n" +
-                        "    \"LoginData\": \"admin\",\n" +
-                        "    \"Password\": \"ltstudents\"\n" +
-                        "}")
-
                 .when()
-                .post("https://auth.ltdo.xyz/auth/login")
+                .header("Content-Type","application/json")
+                .body(request)
+                .post(auth)
                 .then().statusCode(200)
                 .extract()
                 .response()
-//                .prettyPeek()
+                .prettyPeek()
                 .jsonPath()
                 .getString("accessToken");
     }
